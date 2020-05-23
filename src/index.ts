@@ -1,5 +1,6 @@
-import { appendFile, mkdir, exists } from 'fs';
+import { appendFile } from 'fs';
 import validate from './validate';
+import checkDirectory from './check-directory';
 
 export default class Logger {
     #path: string;
@@ -29,14 +30,7 @@ export default class Logger {
     };
 
     public log(data: object): void {
-        exists(this.#path, (isDir: boolean) => {
-            if(!isDir) {
-                mkdir(this.#path, (err) => {
-                    if(err) throw err;
-
-                });
-            };
-        });
+        checkDirectory(this.#path);
 
         appendFile(`${this.#path}/${this.#filename}`, `${JSON.stringify(data)}`, (err) => {
             if (err) throw err;
