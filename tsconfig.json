@@ -1,11 +1,10 @@
 {
     "compilerOptions": {
-      "target": "es6",                          
+      "target": "ES2016",                          
       "module": "commonjs",                    
-      "lib": ["DOM", "es6", "ES2017", "ESNext.AsyncIterable"],   
+      "lib": ["DOM", "es6", "ES2017", "ESNext.AsyncIterable", "ES2018"],   
       "declaration": true,
-      "outDir": "./lib",
-      "strict": true
+      "outDir": "./lib"
     },
     "include": ["src"],
     "exclude": ["node_modules", "**/__tests__/*"]

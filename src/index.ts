@@ -1,10 +1,13 @@
 import { appendFile, mkdir, exists } from 'fs';
+import validate from './validate';
 
 export default class Logger {
     #path: string;
     #filename: string;
 
     constructor({ path, filename }: { path: string, filename: string }) {
+        validate({ path, filename });
+
         this.#path = path;
         this.#filename = filename;
     };
