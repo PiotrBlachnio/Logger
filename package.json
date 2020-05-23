@@ -2,10 +2,24 @@
   "name": "@airow/logger",
   "version": "1.0.0",
   "description": "Logger that you can use for anything you want.",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "files": [
+    "lib/**/*"
+  ],
   "scripts": {
+    "dev": "concurrently \"tsc -w\" \"nodemon lib/index.js\""
   },
-  "keywords": ["npm", "logger", "airow"],
+  "keywords": [
+    "npm",
+    "logger",
+    "airow"
+  ],
   "author": "Piotr Blachnio",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^14.0.5",
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4",
+    "typescript": "^3.9.3"
+  }
 }
