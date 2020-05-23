@@ -1,0 +1,11 @@
+{
+  "name": "@airow/logger",
+  "version": "1.0.0",
+  "description": "Logger that you can use for anything you want.",
+  "main": "index.js",
+  "scripts": {
+  },
+  "keywords": ["npm", "logger", "airow"],
+  "author": "Piotr Blachnio",
+  "license": "ISC"
+}
