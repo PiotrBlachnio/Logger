@@ -54,3 +54,5 @@ export default class Logger {
         };
     };
 };
+
+//TODO: Add global types
