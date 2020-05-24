@@ -47,7 +47,7 @@ export default class Logger {
         });
     };
 
-    public async findLogs(args: object): Promise<object[]> {
+    public async findLogs(args: object): Promise<object[] | never> {
         return new Promise(async (resolve, reject) => {
             try {
                 const fullPath: string = `${this.#path}/${this.#filename}`;
@@ -64,4 +64,3 @@ export default class Logger {
         });
     };
 };
-//TODO: Add global types
