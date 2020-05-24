@@ -19,7 +19,7 @@ describe('Check directory function', () => {
 
     describe('When directory already exists', () => {
         it('Should resolve the promise', async (done) => {
-            expect(checkDirectory(path.join(__dirname, '/testDirectory'))).resolves.toBeCalled();
+            expect(checkDirectory(path.join(__dirname, '/testDirectory'))).resolves.toBeUndefined();
             done();
         });
     });

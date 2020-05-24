@@ -19,6 +19,7 @@ export default class Logger {
     };
 
     public setPath(path: string): void {
+        validate({ path });
         this.#path = path;
     };
 
@@ -27,6 +28,7 @@ export default class Logger {
     };
 
     public setFilename(filename: string) {
+        validate({ filename });
         this.#filename = filename;
     };
 
@@ -63,4 +65,3 @@ export default class Logger {
     };
 };
 //TODO: Add global types
-//TODO: Validate setters
