@@ -6,14 +6,12 @@ import matchObject from './match-object';
 export default class Logger {
     #path: string;
     #filename: string;
-    #fullPath: string;
 
     constructor({ path, filename }: { path: string, filename: string }) {
         validate({ path, filename });
 
         this.#path = path;
         this.#filename = filename;
-        this.#fullPath = `${path}/${filename}`;
     };
 
     public getPath(): string {
@@ -32,26 +30,37 @@ export default class Logger {
         this.#filename = filename;
     };
 
-    public log(data: object): void | never {
-        checkDirectory(this.#path)
-        .then(async () => {
-            const fileInput: string = `${JSON.stringify({ ...data, time: Date.now() })},,\n`;
-            await fs.promises.appendFile(this.#fullPath, fileInput);
+    public log(data: object): Promise<void | never> {
+        return new Promise((resolve, reject) => {
+            const fullPath: string = `${this.#path}/${this.#filename}`;
+
+            checkDirectory(this.#path)
+            .then(async () => {
+                const fileInput: string = `${JSON.stringify({ ...data, time: Date.now() })},,\n`;
+                await fs.promises.appendFile(fullPath, fileInput);
+
+                resolve();
+            })
+            .catch(err => reject(err));
         });
     };
 
     public async findLogs(args: object): Promise<object[]> {
-        try {
-            const fileData: string = await fs.promises.readFile(this.#fullPath, 'utf8');
-
-            let logs: string[] | object[] = fileData.split(',,');
-            logs.pop();
-
-            logs = logs.map(object => JSON.parse(object));
-            return (logs as object[]).filter(object => matchObject(object, args));
-        } catch(error) {
-            throw error;
-        };
+        return new Promise(async (resolve, reject) => {
+            try {
+                const fullPath: string = `${this.#path}/${this.#filename}`;
+                const fileData: string = await fs.promises.readFile(fullPath, 'utf8');
+    
+                let logs: string[] | object[] = fileData.split(',,');
+                logs.pop();
+    
+                logs = logs.map(object => JSON.parse(object));
+                resolve((logs as object[]).filter(object => matchObject(object, args)));
+            } catch(error) {
+                reject(error);
+            };
+        });
     };
 };
 //TODO: Add global types
+//TODO: Validate setters
