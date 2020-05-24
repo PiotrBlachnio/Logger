@@ -1,3 +1,9 @@
+/**
+ * Check if provided data is valid
+ * 
+ * @param {object} data Object that can contain path or/and filename
+ * @return {void | never} Return void when provided data is valid, otherwise throw an error
+ */
 export default (data: {}): void | never => {
     const keys: string[] = Object.keys(data);
 
