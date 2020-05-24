@@ -1,6 +1,6 @@
 {
-  "name": "@airow/logger",
-  "version": "1.0.0",
+  "name": "@stargaze/logger",
+  "version": "1.0.1",
   "description": "Logger that you can use for anything you want.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -17,7 +17,7 @@
     "airow"
   ],
   "author": "Piotr Blachnio",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/jest": "^25.2.3",
     "@types/node": "^14.0.5",
