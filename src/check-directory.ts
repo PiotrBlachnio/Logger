@@ -1,9 +1,9 @@
-import { exists, mkdir } from "fs";
+import * as fs from "fs";
 
 export default (path: string, callback: Function): void | never => {
-    exists(path, (isDirectory) => {
+    fs.exists(path, (isDirectory) => {
         if(!isDirectory) {
-            mkdir(path, (err) => {
+            fs.mkdir(path, (err) => {
                 if(err) throw err;
             });
         };
