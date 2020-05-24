@@ -40,18 +40,25 @@ export default class Logger {
         });
     };
 
-    public compareData(): void {
+    public async findLogs(args: object): Promise<object[]> {
         const fullPath: string = `${this.#path}/${this.#filename}`;
+        let objects: string[] | object[];
 
-        fs.readFile(fullPath, 'utf8', (err, data) => {
-            if(err) throw err;
+        try {
+            const data: string = await fs.promises.readFile(fullPath, 'utf8');
 
-            const objects: string[] = data.split(',,');
+            objects = data.split(',,');
             objects.pop();
-        });
+
+            objects = objects.map(object => JSON.parse(object));
+            return (objects as object[]).filter(object => typeof object === 'object');
+        } catch(error) {
+            throw error;
+        };
     };
 };
 
 // const logger: Logger = new Logger({ path: './logs', filename: 'main.log' });
 // logger.log({ message: 'Test message' });
-// logger.compareData();
+// logger.findLogs({})
+// .then((data) => console.log(data));
