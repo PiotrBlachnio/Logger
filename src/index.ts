@@ -33,33 +33,24 @@ export default class Logger {
     };
 
     public log(data: object): void | never {
-        checkDirectory(this.#path, () => {
-            const fileInput: string = `\n${JSON.stringify({ ...data, time: Date.now() })},,`;
-
-            fs.appendFile(this.#fullPath, fileInput, (err) => {
-                if(err) throw err;
-            });
+        checkDirectory(this.#path)
+        .then(async () => {
+            const fileInput: string = `${JSON.stringify({ ...data, time: Date.now() })},,\n`;
+            await fs.promises.appendFile(this.#fullPath, fileInput);
         });
     };
 
     public async findLogs(args: object): Promise<object[]> {
-        let objects: string[] | object[];
-
         try {
-            const data: string = await fs.promises.readFile(this.#fullPath, 'utf8');
+            const fileData: string = await fs.promises.readFile(this.#fullPath, 'utf8');
 
-            objects = data.split(',,');
-            objects.pop();
+            let logs: string[] | object[] = fileData.split(',,');
+            logs.pop();
 
-            objects = objects.map(object => JSON.parse(object));
-            return (objects as object[]).filter(object => matchObject(object, args));
+            logs = logs.map(object => JSON.parse(object));
+            return (logs as object[]).filter(object => matchObject(object, args));
         } catch(error) {
             throw error;
         };
     };
 };
-
-const logger: Logger = new Logger({ path: './logs', filename: 'main.log' });
-// logger.log({ message: 'Test message' });
-// logger.findLogs({ message: 'Test message', time: 1590301183544 })
-// .then((data) => console.log(data));
