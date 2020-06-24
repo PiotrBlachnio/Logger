@@ -103,4 +103,22 @@ export default class Logger {
             };
         });
     };
+
+    /**
+     * Remove all logs from the main file
+     * @return {void | never} Return void or throw an error
+     */
+    public async removeLogs(): Promise<void | never> {
+        return new Promise(async (resolve, reject) => {
+            const fullPath: string = `${this.#path}/${this.#filename}`;
+
+            checkDirectory(this.#path)
+            .then(async () => {
+                await fs.promises.writeFile(fullPath, '');
+
+                resolve();
+            })
+            .catch(err => reject(err));
+        });
+    };
 };
