@@ -1,10 +1,10 @@
 /**
  * Check if provided data is valid
  * 
- * @param {object} data Object that can contain path or/and filename
+ * @param {Record<string, unknown>} data Object that can contain path or/and filename
  * @return {void | never} Return void when provided data is valid, otherwise throw an error
  */
-export default (data: {}): void | never => {
+export default (data: Record<string, unknown>): void | never => {
     const keys: string[] = Object.keys(data);
 
     keys.forEach((key: string) => {

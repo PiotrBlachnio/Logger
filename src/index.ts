@@ -63,10 +63,10 @@ export default class Logger {
     /**
      * Append data to the file in the form of a log
      * 
-     * @param {object} data Data as an object for the file input
+     * @param {Record<string, unknown>} data Data as an object for the file input
      * @return {void | never} Resolve when writing to file was successful
      */
-    public log(data: object): Promise<void | never> {
+    public log(data: Record<string, unknown>): Promise<void | never> {
         return new Promise((resolve, reject) => {
             const fullPath: string = `${this.#path}/${this.#filename}`;
 
@@ -84,20 +84,20 @@ export default class Logger {
     /**
      * Filter logs from the file by matching with the given object
      * 
-     * @param {object} args The object for the comparison
-     * @return {object[] | never} Return array of objects if those were found, otherwise return an empty array
+     * @param {Record<string, unknown>} args The object for the comparison
+     * @return {Record<string, unknown>[] | never} Return array of objects if those were found, otherwise return an empty array
      */
-    public async findLogs(args: object): Promise<object[] | never> {
+    public async findLogs(args: Record<string, unknown>): Promise<Record<string, unknown>[] | never> {
         return new Promise(async (resolve, reject) => {
             try {
                 const fullPath: string = `${this.#path}/${this.#filename}`;
                 const fileData: string = await fs.promises.readFile(fullPath, 'utf8');
     
-                let logs: string[] | object[] = fileData.split(',,');
+                let logs: string[] | Record<string, unknown>[] = fileData.split(',,');
                 logs.pop();
     
                 logs = logs.map(object => JSON.parse(object));
-                resolve((logs as object[]).filter(object => matchObject(object, args)));
+                resolve((logs as Record<string, unknown>[]).filter(object => matchObject(object, args)));
             } catch(error) {
                 reject(error);
             };

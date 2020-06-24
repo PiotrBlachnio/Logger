@@ -57,7 +57,7 @@ describe('Logger class', () => {
 
     describe('Find logs method', () => {
         it('Should filter and return logs successfully', async(done) => {
-            const logs: object[] = await logger.findLogs({ message: 'Hello world!' });
+            const logs: Record<string, unknown>[] = await logger.findLogs({ message: 'Hello world!' });
 
             expect(logs[0]).toMatchObject({ message: 'Hello world!' });
             done();
@@ -67,7 +67,7 @@ describe('Logger class', () => {
     describe('Remove logs method', () => {
         it('Should successfully remove logs from the file', async (done) => {
             await logger.removeLogs();
-            const logs: object[] = await logger.findLogs({});
+            const logs: Record<string, unknown>[] = await logger.findLogs({});
 
             expect(logs).toHaveLength(0);
             done();
