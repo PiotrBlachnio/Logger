@@ -23,6 +23,11 @@ Find logs matching provided arguments
 logger.findLogs({ foo: 'bar' });
 ```
 
+Remove all logs from the file
+```js
+logger.removeLogs();
+```
+
 ## Contributing
 1. Fork it (https://github.com/PiotrBlachnio/npm-logger/fork)
 1. Create your feature branch (git checkout -b feature/fooBar)
