@@ -1,10 +1,10 @@
-![npm (scoped)](https://img.shields.io/npm/v/@stargaze/logger)  ![NPM](https://img.shields.io/npm/l/@stargaze/logger)
+![npm (scoped)](https://img.shields.io/npm/v/@primaxx/logger)  ![NPM](https://img.shields.io/npm/l/@primaxx/logger)
 
 *Logger that you can use for anything you want.*
 
 ## Install
 ```
-$ npm install @stargaze/logger
+$ npm install @primaxx/logger
 ```
 
 ## Usage
@@ -29,7 +29,7 @@ logger.removeLogs();
 ```
 
 ## Contributing
-1. Fork it (https://github.com/PiotrBlachnio/npm-logger/fork)
+1. Fork it (https://github.com/primaxx/logger/fork)
 1. Create your feature branch (git checkout -b feature/fooBar)
 1. Commit your changes (git commit -am 'Add some fooBar')
 1. Push to the branch (git push origin feature/fooBar)
