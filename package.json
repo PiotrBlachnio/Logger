@@ -1,6 +1,6 @@
 {
-  "name": "@stargaze/logger",
-  "version": "1.2.2",
+  "name": "@primaxx/logger",
+  "version": "1.0.0",
   "description": "Logger that you can use for anything you want.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -14,7 +14,7 @@
   "keywords": [
     "npm",
     "logger",
-    "airow"
+    "typescript"
   ],
   "author": "Piotr Blachnio",
   "license": "MIT",
